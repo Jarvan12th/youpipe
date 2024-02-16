@@ -28,5 +28,12 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/youpipe:1.0.0
             ${{ secrets.DOCKERHUB_USERNAME }}/youpipe:latest
-          description: "YouPipe, an experimental YouTube clone"
-          maintainers: "Jarvan Lee <jarvan-jobs@outlook.com>"
+
+      - name: Update Docker Hub Repository Description and Maintainers
+        run: |
+          curl -X POST "https://hub.docker.com/v2/repositories/${{ secrets.DOCKERHUB_USERNAME }}/youpipe/" \
+               -H "Authorization: JWT ${TOKEN}" \
+               -d '{"full_description": "YouPipe, an experimental YouTube clone", "maintainers": ["Jarvan Lee <jarvan-jobs@outlook.com>"]}'
+        env:
+          TOKEN: ${{ secrets.DOCKER_HUB_API_TOKEN }}
+
