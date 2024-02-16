@@ -3,7 +3,6 @@ FROM openjdk:17-jdk-slim AS build
 
 # Set labels for metadata
 LABEL description="YouPipe, an experimental YouTube clone" \
-      version="latest" \
       maintainer="Jarvan Lee"
 # Set the working directory
 WORKDIR /app
