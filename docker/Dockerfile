@@ -1,9 +1,6 @@
 # Build stage
 FROM openjdk:17-jdk-slim AS build
 
-# Set labels for metadata
-LABEL description="YouPipe, an experimental YouTube clone" \
-      maintainer="Jarvan Lee"
 # Set the working directory
 WORKDIR /app
 
