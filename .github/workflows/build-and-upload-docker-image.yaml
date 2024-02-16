@@ -28,3 +28,5 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/youpipe:1.0.0
             ${{ secrets.DOCKERHUB_USERNAME }}/youpipe:latest
+          description: "YouPipe, an experimental YouTube clone"
+          maintainers: "Jarvan Lee <jarvan-jobs@outlook.com>"
