@@ -3,7 +3,6 @@ package com.jarvanlee.youpipe.controller;
 import com.jarvanlee.youpipe.common.ResponseResult;
 import com.jarvanlee.youpipe.entity.Video;
 import com.jarvanlee.youpipe.service.UploadService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +25,7 @@ public class UploadController {
     // upload video files
     @PostMapping("/upload")
     public ResponseResult upload(MultipartHttpServletRequest request,
-                         @RequestParam("title") String title,
-                         @RequestParam("description") String description) {
+                                 @RequestParam String title, @RequestParam String description) {
         MultipartFile file = request.getFile("file");
         if (file == null) {
             return ResponseResult.error("No file received.");
@@ -43,6 +41,6 @@ public class UploadController {
 
         boolean result = uploadService.upload(file, video);
 
-        return result ? ResponseResult.success() : ResponseResult.error("Upload failed.");
+        return result ? ResponseResult.success("Upload successful.") : ResponseResult.error("Upload failed.");
     }
 }

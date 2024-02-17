@@ -2,7 +2,9 @@ package com.jarvanlee.youpipe.repository;
 
 import com.jarvanlee.youpipe.entity.Video;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-public interface VideoRepository extends MongoRepository<Video, String> {
+@Repository
+public interface VideoMetadataRepository extends MongoRepository<Video, String> {
 
 }

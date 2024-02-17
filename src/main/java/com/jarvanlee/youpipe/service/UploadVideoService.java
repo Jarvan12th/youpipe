@@ -1,7 +1,9 @@
 package com.jarvanlee.youpipe.service;
 
+import com.jarvanlee.youpipe.common.OssConfiguration;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,11 +12,14 @@ public class UploadVideoService {
 
     private MinioClient minioClient;
 
+    @Autowired
+    private OssConfiguration ossConfiguration;
+
     public boolean upload(MultipartFile file, String url) {
         try {
             minioClient = MinioClient.builder()
-                    .endpoint("http://localhost:9000")
-                    .credentials("minioadmin", "minioadmin")
+                    .endpoint(ossConfiguration.getEndpoint())
+                    .credentials(ossConfiguration.getAccessKey(), ossConfiguration.getSecretKey())
                     .build();
 
             minioClient.putObject(
